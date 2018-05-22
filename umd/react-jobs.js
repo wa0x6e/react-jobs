@@ -240,8 +240,8 @@ function withJob(config) {
 
 
       _createClass(ComponentWithJob, [{
-        key: 'asyncBootstrap',
-        value: function asyncBootstrap() {
+        key: 'bootstrap',
+        value: function bootstrap() {
           if (env === 'browser') {
             // No logic for browser, just continue
             return true;
@@ -332,7 +332,7 @@ function withJob(config) {
           workDefinition = work(props);
         } catch (error) {
           _this2.setState({ completed: true, error: error });
-          // Ensures asyncBootstrap stops
+          // Ensures bootstrap stops
           return false;
         }
 
@@ -346,7 +346,7 @@ function withJob(config) {
             if (_this2.context.jobs) {
               _this2.context.jobs.register(id, { data: data });
             }
-            // Ensures asyncBootstrap continues
+            // Ensures bootstrap continues
             return true;
           }).catch(function (error) {
             if (_this2.unmounted) {
@@ -377,7 +377,7 @@ function withJob(config) {
                 });
               }
             }
-            // Ensures asyncBootstrap stops
+            // Ensures bootstrap stops
             return false;
           });
         }
@@ -385,7 +385,7 @@ function withJob(config) {
         // Synchronous result.
         _this2.setState({ completed: true, data: workDefinition, error: null });
 
-        // Ensures asyncBootstrap continues
+        // Ensures bootstrap continues
         return true;
       };
 

@@ -55,7 +55,7 @@ export default function withJob(config) {
       }
 
       // @see react-async-bootstrapper
-      asyncBootstrap() {
+      bootstrap() {
         if (env === 'browser') {
           // No logic for browser, just continue
           return true
@@ -117,7 +117,7 @@ export default function withJob(config) {
           workDefinition = work(props)
         } catch (error) {
           this.setState({ completed: true, error })
-          // Ensures asyncBootstrap stops
+          // Ensures bootstrap stops
           return false
         }
 
@@ -132,7 +132,7 @@ export default function withJob(config) {
               if (this.context.jobs) {
                 this.context.jobs.register(id, { data })
               }
-              // Ensures asyncBootstrap continues
+              // Ensures bootstrap continues
               return true
             })
             .catch(error => {
@@ -164,7 +164,7 @@ export default function withJob(config) {
                   })
                 }
               }
-              // Ensures asyncBootstrap stops
+              // Ensures bootstrap stops
               return false
             })
         }
@@ -172,7 +172,7 @@ export default function withJob(config) {
         // Synchronous result.
         this.setState({ completed: true, data: workDefinition, error: null })
 
-        // Ensures asyncBootstrap continues
+        // Ensures bootstrap continues
         return true
       }
 
